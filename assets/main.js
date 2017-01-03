@@ -114,43 +114,19 @@ var	on = addEventListener,
 
 		//Notification Code::
 
-var notification;
-
-var options = {
-	body: "This is a desktop notification",
-	icon: "image01.png"
-}
-
 function onStart() {
-		// Let's check if the browser supports notifications
-  if (!("Notification" in window)) {
-    alert("This browser does not support desktop notification");
+		if (!Notification) {
+    alert('Desktop notifications are not available in your browser. Try Chrome.'); 
+    return;
   }
 
-  // Let's check whether notification permissions have already been granted
-  else if (Notification.permission === "granted") {
-    // If it's okay let's create a notification
-    notifyMe();
-  }
-
-  // Otherwise, we need to ask the user for permission
-  else if (Notification.permission !== 'denied') {
-    Notification.requestPermission(function (permission) {
-      // If the user accepts, let's create a notification
-      if (permission === "granted") {
-        var myVar = setInterval(notifyMe, 1000);
-      }
+  if (Notification.permission !== "granted") 
+    Notification.requestPermission();
+  else {
+    var notification = new Notification('Test', {
+      icon: 'image01.png',
+      body: "This is a desktop notification",
     });
-  }
 
-  // At last, if the user has denied notifications, and you 
-  // want to be respectful there is no need to bother them any more.
-}
-
-function notifyMe() {
-	 notification = new Notification("Test!", options);
-   notification.onclick = function(event) {
-    event.preventDefault();
-    window.open("maxalbert.me", '_blank');
-    }
+	}
 }
