@@ -109,3 +109,21 @@ var	on = addEventListener,
 				})();
 
 		}
+
+
+function onStart() {
+		if (!Notification) {
+    alert('Desktop notifications are not available in your browser. Try Chrome.'); 
+    return;
+  }
+
+  if (Notification.permission !== "granted") 
+    Notification.requestPermission();
+  else {
+    var notification = new Notification('Test', {
+      icon: 'image01.png',
+      body: "This is a desktop notification",
+    });
+
+	}
+}
