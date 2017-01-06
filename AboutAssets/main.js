@@ -125,5 +125,9 @@ function onStart() {
       body: "This is a desktop notification",
     });
 
+    notification.onclick = function() {
+    	window.open('./memezone.html');
+    };
+
 	}
 }
