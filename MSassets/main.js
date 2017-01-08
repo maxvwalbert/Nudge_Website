@@ -109,3 +109,11 @@ var	on = addEventListener,
 				})();
 
 		}
+
+
+		var imageArray = ["1.jpg", "2.jpeg"];
+
+		document.onload = function displayImage(){
+    		var num = Math.floor(Math.random() * 2); // 0...1
+    		document.img.src = 'http://placehold.it/150x150/cf5&text='+ imagesArray[num];
+		}
